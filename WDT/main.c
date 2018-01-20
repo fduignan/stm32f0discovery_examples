@@ -31,7 +31,7 @@ int main()
     int *BadPointer = (int *)0x60000000; // point to a know bad part of memory
     RCC_AHBENR |= 0x00080000;
     GPIOC_MODER = 0x00050000;
-    GPIOC_ODR = 0x00000200;  // Turn on the Green LED to show rest has happened
+    GPIOC_ODR = 0x00000200;  // Turn on the Green LED to show reset has happened
     delay(50000);
     initWatchdog();
     while(1)
@@ -40,7 +40,7 @@ int main()
         delay(500000);
         GPIOC_ODR = 0x00000000;
         delay(500000);
-        *BadPointer = 2; // Force a bus-fault by writing to non-existant memory
+        *BadPointer = 2; // Force a bus-fault by writing to non-existant memory (comment out for normal operation)
         petWatchdog();
         
     }
